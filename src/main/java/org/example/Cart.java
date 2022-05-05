@@ -35,6 +35,14 @@ public class Cart {
         }
     }
 
+    public void addItemNumberInCart(Item item, int quantity) throws ProductExceedsLimitException {
+        if (quantity >= MAX_QUANTITY_PER_PRODUCT) {
+            throw new ProductExceedsLimitException(item.getProduct().getName() + "exceeds the maximum number limit of 99");
+        }
+
+        item.setQuantity(quantity);
+    }
+
 
     private Item findItemByProducts(Product product) {
         return items
