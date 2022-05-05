@@ -1,4 +1,9 @@
-package org.example;
+package org.example.domain;
+
+import org.example.modual.Item;
+import org.example.modual.Product;
+import org.example.exception.ProductExceedsLimitException;
+import org.example.exception.ProductExpiredException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

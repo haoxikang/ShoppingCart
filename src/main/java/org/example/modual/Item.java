@@ -1,4 +1,4 @@
-package org.example;
+package org.example.modual;
 
 public class Item {
     private Product product;

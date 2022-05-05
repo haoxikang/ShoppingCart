@@ -1,4 +1,4 @@
-package org.example;
+package org.example.modual;
 
 import java.time.LocalDate;
 import java.util.Objects;
