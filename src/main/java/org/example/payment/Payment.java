@@ -1,5 +1,7 @@
 package org.example.payment;
 
+import java.math.BigDecimal;
+
 public interface Payment {
-    boolean pay(float totalMoney);
+    boolean pay(BigDecimal totalMoney);
 }

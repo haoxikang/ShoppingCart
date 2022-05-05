@@ -1,17 +1,18 @@
 package org.example.modual;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Product {
     private String name;
     private String id;
-    private String price;
+    private BigDecimal price;
     private String type;
     private LocalDate productionDate;
     private LocalDate productionExpiredDate;
 
-    public Product(String name, String id, String price, String type, LocalDate productionDate) {
+    public Product(String name, String id, BigDecimal price, String type, LocalDate productionDate) {
         this.name = name;
         this.id = id;
         this.price = price;
@@ -35,11 +36,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
