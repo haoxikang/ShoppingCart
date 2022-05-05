@@ -1,6 +1,10 @@
 package org.example;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Cart {
     private static final int MAX_QUANTITY_PER_PRODUCT = 99;
@@ -17,7 +21,11 @@ public class Cart {
         productDiscount.put(APPLE_ID, 0.1f);
     }
 
-    public void addProductToCart(Product product) throws ProductExceedsLimitException {
+    public void addProductToCart(Product product) throws ProductExceedsLimitException, ProductExpiredException {
+        if (product.getProductionExpiredDate().isAfter(LocalDate.now())) {
+            throw new ProductExpiredException(product.getName() + "is expired");
+        }
+
         Item item = findItemByProducts(product);
         if (item == null) {
             items.add(asAnewItem(product));
