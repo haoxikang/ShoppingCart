@@ -1,12 +1,18 @@
 package org.example.domain;
 
 import org.example.modual.Item;
+import org.example.payment.Payment;
 import org.example.payment.PaymentType;
 
 import java.math.BigDecimal;
 
 public class Order {
-    public boolean placeItems(Item[] items, String paymentType) {
+    public void placeItems(Item[] items, PaymentType paymentType) {
+        BigDecimal totalMoney = calculateTotalMoney(items);
+        dealWithPayment(totalMoney, paymentType);
+    }
+
+    private BigDecimal calculateTotalMoney(Item[] items) {
         BigDecimal totalMoney = BigDecimal.ZERO;
         // You can use stream
         for (int index = 0; index < items.length; index++) {
@@ -15,13 +21,11 @@ public class Order {
             BigDecimal quantity = BigDecimal.valueOf(items[index].getQuantity());
             totalMoney = totalMoney.add(price.multiply(discount).multiply(quantity));
         }
-        PaymentType payload = PaymentType.findType(paymentType);
-        if (payload.equals(PaymentType.Default)) {
-            System.out.println("payment failed");
-            return false;
-        } else {
-            payload.getPayment().pay(totalMoney);
-            return true;
-        }
+        return totalMoney;
+    }
+
+    private void dealWithPayment(BigDecimal totalMoney, PaymentType paymentType) {
+        Payment payment = PaymentFactory.newInstance(paymentType);
+        payment.pay(totalMoney);
     }
 }
