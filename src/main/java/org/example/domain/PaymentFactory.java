@@ -6,19 +6,19 @@ public class PaymentFactory {
     public static Payment newInstance(PaymentType paymentType) {
         switch (paymentType) {
             case IPS -> {
-                return IPSPay()
+                return new IPSPay();
             }
             case AliPay -> {
-                return AliPay()
+                return new AliPay();
             }
             case Paypal -> {
-                return PaypalPay()
+                return new PaypalPay();
             }
             case Wechat -> {
-                return WechatPay()
+                return new WechatPay();
             }
-            case ApplePay -> {
-                return ApplePay()
+            default -> {
+                return new ApplePay();
             }
         }
     }
