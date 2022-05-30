@@ -5,21 +5,16 @@ import org.example.payment.*;
 public class PaymentFactory {
     public static Payment newInstance(PaymentType paymentType) {
         switch (paymentType) {
-            case IPS -> {
+            case IPS:
                 return new IPSPay();
-            }
-            case AliPay -> {
+            case AliPay:
                 return new AliPay();
-            }
-            case Paypal -> {
+            case Paypal:
                 return new PaypalPay();
-            }
-            case Wechat -> {
+            case Wechat:
                 return new WechatPay();
-            }
-            default -> {
+            default:
                 return new ApplePay();
-            }
         }
     }
 }

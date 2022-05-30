@@ -5,14 +5,15 @@ import org.example.payment.Payment;
 import org.example.payment.PaymentType;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Order {
-    public void buyItems(Item[] items, PaymentType paymentType) {
+    public void buyItems(List<Item> items, PaymentType paymentType) {
         BigDecimal totalMoney = calculateTotalMoney(items);
         dealWithPayment(totalMoney, paymentType);
     }
 
-    private BigDecimal calculateTotalMoney(Item[] items) {
+    private BigDecimal calculateTotalMoney(List<Item> items) {
         BigDecimal totalMoney = BigDecimal.ZERO;
         for (Item item : items) {
             BigDecimal discount = BigDecimal.valueOf(item.getDiscount());
