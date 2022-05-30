@@ -15,10 +15,10 @@ public class Order {
     private BigDecimal calculateTotalMoney(Item[] items) {
         BigDecimal totalMoney = BigDecimal.ZERO;
         // You can use stream
-        for (int index = 0; index < items.length; index++) {
-            BigDecimal discount = BigDecimal.valueOf(items[index].getDiscount());
-            BigDecimal price = items[index].getProduct().getPrice();
-            BigDecimal quantity = BigDecimal.valueOf(items[index].getQuantity());
+        for (Item item : items) {
+            BigDecimal discount = BigDecimal.valueOf(item.getDiscount());
+            BigDecimal price = item.getProduct().getPrice();
+            BigDecimal quantity = BigDecimal.valueOf(item.getQuantity());
             totalMoney = totalMoney.add(price.multiply(discount).multiply(quantity));
         }
         return totalMoney;
