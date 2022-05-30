@@ -7,7 +7,7 @@ import org.example.payment.PaymentType;
 import java.math.BigDecimal;
 
 public class Order {
-    public void placeItems(Item[] items, PaymentType paymentType) {
+    public void buyItems(Item[] items, PaymentType paymentType) {
         BigDecimal totalMoney = calculateTotalMoney(items);
         dealWithPayment(totalMoney, paymentType);
     }
