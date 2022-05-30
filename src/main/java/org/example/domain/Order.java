@@ -14,7 +14,6 @@ public class Order {
 
     private BigDecimal calculateTotalMoney(Item[] items) {
         BigDecimal totalMoney = BigDecimal.ZERO;
-        // You can use stream
         for (Item item : items) {
             BigDecimal discount = BigDecimal.valueOf(item.getDiscount());
             BigDecimal price = item.getProduct().getPrice();
