@@ -28,7 +28,7 @@ public class Cart {
     }
 
     public void addProductToCart(Product product) throws ProductExceedsLimitException, ProductExpiredException {
-        if (product.getProductionExpiredDate().isAfter(LocalDate.now())) {
+        if (product.getProductionExpiredDate().isBefore(LocalDate.now())) {
             throw new ProductExpiredException(product.getName() + "is expired");
         }
 
