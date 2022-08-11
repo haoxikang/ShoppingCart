@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Cart {
     private static final int MAX_QUANTITY_PER_PRODUCT = 99;
@@ -31,10 +32,11 @@ public class Cart {
             throw new ProductExpiredException(product.getName() + "is expired");
         }
 
-        Item item = findItemByProducts(product);
-        if (item == null) {
+        Optional<Item> itemOptional = findItemByProducts(product);
+        if (itemOptional.isEmpty()) {
             items.add(asAnewItem(product));
         } else {
+            Item item = itemOptional.get();
             checkProductQuantity(item);
             increase(item);
         }
@@ -45,16 +47,19 @@ public class Cart {
             throw new ProductExceedsLimitException(item.getProduct().getName() + "exceeds the maximum number limit of 99");
         }
 
-        item.setQuantity(quantity);
+        Optional<Item> itemOptional = findItemByProducts(item.getProduct());
+        if (itemOptional.isPresent()) {
+            Item itemFromCartList = itemOptional.get();
+            itemFromCartList.setQuantity(quantity);
+        }
     }
 
 
-    private Item findItemByProducts(Product product) {
+    private Optional<Item> findItemByProducts(Product product) {
         return items
                 .stream()
                 .filter(item -> item.getProduct() == product)
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     private Item asAnewItem(Product product) {
